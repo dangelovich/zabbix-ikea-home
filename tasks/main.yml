@@ -9,9 +9,13 @@
     cmd: "python3 -m venv {{ zabbix_ikea_home_venv_path }}"
     creates: "{{ zabbix_ikea_home_venv_path }}"
   become: true
+- name: Deploy the requirements file
+  ansible.builtin.copy:
+    src: files/requirements.txt
+    dest: "{{ zabbix_ikea_home_venv_path }}/requirements.txt"
+    mode: ugo=r
 - name: Ensure the virtualenv has its requirements
   ansible.builtin.pip:
     requirements: "{{ zabbix_ikea_home_venv_requirements }}"
     virtualenv: "{{ zabbix_ikea_home_venv_path }}"
   become: true
-
