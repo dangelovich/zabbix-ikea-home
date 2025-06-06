@@ -1,0 +1,17 @@
+---
+- name: Install python3
+  ansible.builtin.dnf:
+    name: python3
+    state: present
+  become: true
+- name: Create virtualenv for Zabbix
+  ansible.builtin.command:
+    cmd: "python3 -m venv {{ zabbix_ikea_home_venv_path }}"
+    creates: "{{ zabbix_ikea_home_venv_path }}"
+  become: true
+- name: Ensure the virtualenv has its requirements
+  ansible.builtin.pip:
+    requirements: "{{ zabbix_ikea_home_venv_requirements }}"
+    virtualenv: "{{ zabbix_ikea_home_venv_path }}"
+  become: true
+

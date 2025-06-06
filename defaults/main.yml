@@ -1,0 +1,3 @@
+---
+zabbix_ikea_home_venv_path: "/opt/zabbix_ikea_home"
+zabbix_ikea_home_venv_requirements: "files/requirements.txt"
