@@ -14,6 +14,7 @@
     src: files/requirements.txt
     dest: "{{ zabbix_ikea_home_venv_path }}/requirements.txt"
     mode: ugo=r
+  become: true
 - name: Ensure the virtualenv has its requirements
   ansible.builtin.pip:
     requirements: "{{ zabbix_ikea_home_venv_requirements }}"
